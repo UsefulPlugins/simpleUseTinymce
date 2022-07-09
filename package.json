@@ -1,0 +1,38 @@
+{
+  "name": "simpleusetinymce",
+  "version": "1.0.0",
+  "description": "simple use the newest tinymce by vue.",
+  "main": "index.ts",
+  "private": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tinymce/tinymce-vue": "^5.0.0",
+    "tinymce": "^6.1.0",
+    "vue": "^3.2.25",
+    "vue-types": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9",
+    "vue-tsc": "^0.34.7"
+  },
+  "keywords": [
+    "vue",
+    "tinymce"
+  ],
+  "author": {
+    "name": "Numver",
+    "email": "292788255@qq.com"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "MIT"
+}
