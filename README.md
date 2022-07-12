@@ -1,16 +1,39 @@
-# Vue 3 + TypeScript + Vite
+## Notice
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This template help you eary to use the newest tinymce (6). 
 
-## Recommended IDE Setup
+## API
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+|params|content|type|default|
+|----|----|----|----|
+|disabled|disabled the editor|boolean|false|
+|height|editor height   |number|300|
+|lang|the value is same as Language file name|string|""|
+|uploadUrl|upload image url|string|""|
+|headers|upload image url api headers|array<{key:string,val:any}>|""|
 
-## Type Support For `.vue` Imports in TS
+**Other config you can see the tinymce API**
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## Function
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+**1. upload the image and auto send to server**
+**2. paste the image and auto send to server**
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+## DEMO
+
+```
+main.ts
+
+import { createApp } from "vue";
+import App from "./App.vue";
+
+import TEditor from "simpleusetinymce";
+
+createApp(App).use(TEditor).mount("#app");
+```
+
+```
+App.vue
+
+<t-editor v-model="val" />
+```

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^5.0.0",
-    "simpleusetinymce": "^1.0.10",
+    "simpleusetinymce": "^1.0.12",
     "tinymce": "^6.1.0",
     "vue": "^3.2.25",
     "vue-types": "^4.1.1"
@@ -33,8 +33,8 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/teditor.umd.js",
-  "module": "./dist/teditor.es.js",
+  "main": "./dist/t-editor.umd.js",
+  "module": "./dist/t-editor.es.js",
   "exports": {
     ".": {
       "import": "./dist/t-editor.es.js",

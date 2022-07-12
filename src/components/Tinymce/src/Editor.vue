@@ -12,7 +12,7 @@ import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default';
 import 'tinymce/models/dom';
 import { array, bool, number, string } from 'vue-types';
-import { onMounted, onUnmounted, ref, useAttrs, watch } from 'vue';
+import { onMounted, onUnmounted, ref, useAttrs } from 'vue';
 import { plugins, toolbar } from './tinymce';
 import 'tinymce/plugins/image'
 import 'tinymce/plugins/preview'
@@ -46,8 +46,8 @@ import { retrieveImageFromClipboardAsBlob } from './helper';
 const props = defineProps({
     disabled: bool().def(false),
     height: number().def(300),
-    lang: string().def('CN'),
-    uploadUrl: string().isRequired,
+    lang: string().def(''),
+    uploadUrl: string().def(''),
     headers: array<Header>().def([])
 });
 
@@ -217,6 +217,18 @@ const initConfig: any = {
     setup: setup,
 }
 
+try {
+    if (props.lang) {
+        initConfig.language = props.lang;
+        initConfig.language_url = getLangUrl(initConfig.language);
+    } else {
+        delete initConfig.language;
+        delete initConfig.language_url;
+    }
+} catch (error) {
+    delete initConfig.language;
+    delete initConfig.language_url;
+}
 
 onMounted(() => {
     tinymce.init({})
@@ -225,29 +237,12 @@ onMounted(() => {
 onUnmounted(() => {
     tinymce.remove();
 });
-
-watch(() => props.lang, (newVal) => {
-    if (newVal == "CN") {
-        initConfig.language = 'zh-Hans';
-        initConfig.language_url = getLangUrl(initConfig.language);
-    } else if (newVal == "US") {
-        initConfig.language = 'hy';
-        initConfig.language_url = getLangUrl(initConfig.language);
-    } else if (newVal == "TH") {
-        initConfig.language = 'th_TH';
-        initConfig.language_url = getLangUrl(initConfig.language);
-    } else {
-        delete initConfig.language
-        delete initConfig.language_url
-    }
-}, {
-    immediate: true
-})
-
 </script>
 
 <template>
-    <Editor api-key="no-api-key" :init="initConfig" :disabled="disabled" v-bind="attr" :key="lang" />
+    <div class="t-editor">
+        <Editor api-key="no-api-key" :init="initConfig" :disabled="disabled" v-bind="attr" />
+    </div>
 </template>
 
 <style scoped>

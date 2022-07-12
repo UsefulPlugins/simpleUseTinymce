@@ -1,6 +1,6 @@
 <script setup lang="ts">
-//import Editor from "/@/components/Tinymce/src/Editor.vue";
-//import TEditor from 'simpleusetinymce'
+import { ref } from "vue";
+import Editor from "/@/components/Tinymce/src/Editor.vue";
 
 const headers = [
   {
@@ -8,10 +8,22 @@ const headers = [
   }
 ]
 
+let langArr = ["zh-Hans", "hy", "th_TH"];
+let lang = ref(langArr[0]);
+let val = ref("")
+
+//* You can change the lang in time,it is useful to i18n
+/* setInterval(() => {
+  lang.value = langArr[Math.floor(Math.random() * 3)];
+  console.log(lang.value, val.value)
+}, 2000) */
+
 </script>
 
 <template>
-  <t-editor uploadUrl="/api/manage/resource/upload-img" :headers="headers" />
+  <t-editor v-model="val" uploadUrl="/api/manage/resource/upload-img" :headers="headers" :lang="lang" :key="lang" />
+  <br />
+  <Editor v-model="val" uploadUrl="/api/manage/resource/upload-img" :headers="headers" :lang="lang" :key="lang" />
 </template>
 
 <style>
