@@ -8,7 +8,7 @@ This template help you eary to use the newest tinymce (6).
 |----|----|----|----|
 |disabled|disabled the editor|boolean|false|
 |height|editor height   |number|300|
-|lang|the value is same as Language file name|string|""|
+|lang|the value is same as Language file name,if you want to use other lang, please download the file and put it in to the right way by tinymce |string|""|
 |uploadUrl|upload image url|string|""|
 |headers|upload image url api headers|array<{key:string,val:any}>|""|
 
@@ -17,6 +17,7 @@ This template help you eary to use the newest tinymce (6).
 ## Function
 
 **1. upload the image and auto send to server**
+
 **2. paste the image and auto send to server**
 
 ## DEMO
