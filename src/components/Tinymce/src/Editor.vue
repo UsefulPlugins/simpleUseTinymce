@@ -1,4 +1,10 @@
-<script setup lang="ts">
+<script lang="ts">
+export default {
+    name: 't-editor'
+}
+</script>
+
+<script setup lang="ts" name="t-editor">
 import type { Editor as ed } from 'tinymce';
 import tinymce from 'tinymce/tinymce';
 import Editor from '@tinymce/tinymce-vue';
@@ -6,7 +12,7 @@ import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default';
 import 'tinymce/models/dom';
 import { array, bool, number, string } from 'vue-types';
-import { computed, onMounted, onUnmounted, ref, useAttrs, watch, unref } from 'vue';
+import { onMounted, onUnmounted, ref, useAttrs, watch } from 'vue';
 import { plugins, toolbar } from './tinymce';
 import 'tinymce/plugins/image'
 import 'tinymce/plugins/preview'

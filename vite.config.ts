@@ -35,4 +35,19 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    lib: {
+      entry: resolve(__dirname, "src/components/index.ts"),
+      name: "TEditor",
+      fileName: (format) => `t-editor.${format}.js`,
+    },
+    rollupOptions: {
+      external: ["vue"],
+      output: {
+        globals: {
+          vue: "Vue",
+        },
+      },
+    },
+  },
 });

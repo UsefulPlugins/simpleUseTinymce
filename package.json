@@ -1,16 +1,16 @@
 {
   "name": "simpleusetinymce",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "simple use the newest tinymce by vue.",
-  "main": "index.ts",
   "private": false,
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^5.0.0",
+    "simpleusetinymce": "^1.0.10",
     "tinymce": "^6.1.0",
     "vue": "^3.2.25",
     "vue-types": "^4.1.1"
@@ -31,8 +31,20 @@
     "email": "292788255@qq.com"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
+  "main": "./dist/teditor.umd.js",
+  "module": "./dist/teditor.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/t-editor.es.js",
+      "require": "./dist/t-editor.umd.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/numver/simpleUseTinymce"
+  },
+  "homepage": "https://github.com/numver/simpleUseTinymce#readme",
   "license": "MIT"
 }

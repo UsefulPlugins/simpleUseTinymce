@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Editor from "/@/components/Tinymce/src/Editor.vue";
+//import Editor from "/@/components/Tinymce/src/Editor.vue";
+//import TEditor from 'simpleusetinymce'
 
 const headers = [
   {
@@ -10,7 +11,7 @@ const headers = [
 </script>
 
 <template>
-  <Editor uploadUrl="/api/manage/resource/upload-img" :headers="headers" />
+  <t-editor uploadUrl="/api/manage/resource/upload-img" :headers="headers" />
 </template>
 
 <style>

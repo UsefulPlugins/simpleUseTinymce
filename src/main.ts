@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+import TEditor from "simpleusetinymce";
 
-import Editor from "/@/components/Tinymce/src/Editor.vue";
-export default Editor;
+createApp(App).use(TEditor).mount("#app");
