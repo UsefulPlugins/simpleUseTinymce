@@ -29,6 +29,7 @@ This template help you eary to use the newest tinymce (6).
 
 ## DEMO
 **public dir input tinymce resource**
+
 ![resource](https://github.com/numver/simpleUseTinymce/blob/main/assets/resource.png)
 
 ```
