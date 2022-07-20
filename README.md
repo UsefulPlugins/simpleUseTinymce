@@ -23,7 +23,7 @@ This template help you eary to use the newest tinymce (6).
 ## DefineExpose
 
 |Name|Description|Type|
-|----|----|----|----|
+|----|----|----|
 |upload|same as tinymce images_upload_handler|function(blobInfo,progress,isBlob: boolean= true)|
 |editorRef|the editor ref|Ref|
 
