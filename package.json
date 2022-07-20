@@ -1,6 +1,6 @@
 {
   "name": "simpleusetinymce",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "simple use the newest tinymce by vue.",
   "private": false,
   "scripts": {
