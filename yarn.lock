@@ -360,14 +360,15 @@ rollup@^2.59.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-simpleusetinymce@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/simpleusetinymce/-/simpleusetinymce-1.0.12.tgz#054aca58038a237d540377602760b4cc79a43f40"
-  integrity sha512-2M3dsOKQ9ltI+gqxGenLiGtxoR/ndkc6yQnhgkpclao4VLSDKlvHeelbMASiwqNZiXkuvDbm0lPeVwrptVTxWQ==
+simpleusetinymce@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/simpleusetinymce/-/simpleusetinymce-1.0.16.tgz#af6aba4e420744acd4fd257ae25a52fb7eed14ad"
+  integrity sha512-R6nyHhPFpP0Fp+rZ0PxFE680SLXb/zJ1ggIQC6xebC1MOMQLV8WoUa5xJtRt+LSUVvWp7SVOiZXw4prp4531VA==
   dependencies:
     "@tinymce/tinymce-vue" "^5.0.0"
     tinymce "^6.1.0"
     vue "^3.2.25"
+    vue-demi "^0.13.5"
     vue-types "^4.1.1"
 
 source-map-js@^1.0.2:
@@ -411,6 +412,11 @@ vite@^2.9.9:
     rollup "^2.59.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vue-demi@^0.13.5:
+  version "0.13.5"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.5.tgz#d5eddbc9eaefb89ce5995269d1fa6b0486312092"
+  integrity sha512-tO3K2bML3AwiHmVHeKCq6HLef2st4zBXIV5aEkoJl6HZ+gJWxWv2O8wLH8qrA3SX3lDoTDHNghLX1xZg83MXvw==
 
 vue-tsc@^0.34.7:
   version "0.34.17"

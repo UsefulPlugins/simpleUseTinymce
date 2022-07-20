@@ -12,7 +12,7 @@ import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default';
 import 'tinymce/models/dom';
 import { array, bool, number, string } from 'vue-types';
-import { onMounted, onUnmounted, ref, useAttrs } from 'vue';
+import { onMounted, onUnmounted, ref, useAttrs, unref } from 'vue-demi';
 import { plugins, toolbar } from './tinymce';
 import 'tinymce/plugins/image'
 import 'tinymce/plugins/preview'
@@ -48,12 +48,15 @@ const props = defineProps({
     height: number().def(300),
     lang: string().def(''),
     uploadUrl: string().def(''),
-    headers: array<Header>().def([])
+    headers: array<Header>().def([]),
+    showUploadBtn: bool().def(true)
 });
 
 const attr = useAttrs();
 
 const editorRef = ref<Nullable<ed>>(null);
+const uploadBtn = ref();
+const uploadFileBtn = ref();
 
 const getLangUrl = (lang: string) => {
     const langPath = '/tinymce/langs/';
@@ -62,7 +65,7 @@ const getLangUrl = (lang: string) => {
 
 const image_upload_handler = (
     blobInfo: any,
-    progress: any,
+    progress: (num: number) => void,
     isBlob: boolean = true
 ) =>
     new Promise((resolve, reject) => {
@@ -158,6 +161,16 @@ const file_picker_callback = (
         xhr = new XMLHttpRequest();
         xhr.withCredentials = false;
         xhr.open("POST", upurl);
+
+        if (props.headers.length) {
+            try {
+                for (let i = 0; i < props.headers.length; i++) {
+                    const header = props.headers[i];
+                    xhr.setRequestHeader(header.key, header.val);
+                }
+            } catch (error) { }
+        }
+
         xhr.onload = function () {
             var json;
             if (xhr.status != 200) {
@@ -230,6 +243,57 @@ try {
     delete initConfig.language_url;
 }
 
+function setValue(editor: Recordable, val: string, prevVal?: string) {
+    if (
+        editor &&
+        typeof val === 'string' &&
+        val !== prevVal &&
+        val !== editor.getContent()
+    ) {
+        editor.setContent(val);
+    }
+}
+
+function getUploadingImgName(name: string) {
+    return `[uploading:${name}]`;
+}
+
+function handleImageUploading(name: string) {
+    const editor = unref(editorRef);
+    if (!editor) {
+        return;
+    }
+    editor.execCommand('mceInsertContent', false, getUploadingImgName(name));
+    const content = editor?.getContent() ?? '';
+    setValue(editor, content);
+}
+
+function handleDone(name: string, url: string) {
+    const editor = unref(editorRef);
+    if (!editor) {
+        return;
+    }
+    const content = editor?.getContent() ?? '';
+    const val = content?.replace(getUploadingImgName(name), `<img src="${url}"/>`) ?? '';
+    setValue(editor, val);
+}
+
+const uploadClick = () => {
+    uploadFileBtn.value?.click()
+}
+
+const fileChange = (e: any) => {
+    const file = e.target.files[0];
+
+    const p = image_upload_handler(file, (_num: number) => {
+        handleImageUploading(file.name)
+    }, false);
+
+    p.then((res: any) => {
+        handleDone(file.name, res.location)
+    })
+}
+
 onMounted(() => {
     tinymce.init({})
 })
@@ -237,13 +301,23 @@ onMounted(() => {
 onUnmounted(() => {
     tinymce.remove();
 });
+
+defineExpose({
+    upload: image_upload_handler,
+    editorRef
+})
 </script>
 
 <template>
-    <div class="t-editor">
+    <div class="t-editor" style="position: relative;">
         <Editor api-key="no-api-key" :init="initConfig" :disabled="disabled" v-bind="attr" />
+        <slot name="customUploadBtn">
+            <div class="custom-upload" v-if="showUploadBtn" style="position: absolute; right: 4px;top: 4px;">
+                <input type="button" value="Upload" class="upload-btn" ref="uploadBtn" @click="uploadClick"
+                    style="width: 100px;height: 30px;" />
+                <input type="file" class="upload-file-btn" ref="uploadFileBtn" @change="fileChange"
+                    style="display:none" />
+            </div>
+        </slot>
     </div>
 </template>
-
-<style scoped>
-</style>
