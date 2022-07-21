@@ -12,7 +12,7 @@ import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default';
 import 'tinymce/models/dom';
 import { array, bool, number, string } from 'vue-types';
-import { onMounted, onUnmounted, ref, useAttrs, unref } from 'vue-demi';
+import { onMounted, onUnmounted, ref, useAttrs, unref } from 'vue';
 import { plugins, toolbar } from './tinymce';
 import 'tinymce/plugins/image'
 import 'tinymce/plugins/preview'
@@ -42,6 +42,7 @@ import 'tinymce/plugins/wordcount'
 import 'tinymce/plugins/help'
 import 'tinymce/plugins/quickbars'
 import { retrieveImageFromClipboardAsBlob } from './helper';
+import { Header } from './const';
 
 const props = defineProps({
     disabled: bool().def(false),
