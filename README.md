@@ -17,8 +17,17 @@ This template help you eary to use the newest tinymce (6).
 |headers|upload image url api headers|array<{key:string,val:any}>|[]|
 |showUploadBtn|show the custom input file btn|boolean|true|
 |customUploadBtn|custom upload button|slot|
+|urlPrefix|if your image url is not a full url,You can complete the address through it |string|""|
+|jsonKey|Api response like {code:0,data:'xxxx'}, it use the data keyword |string|data|
+|urlFunc|Custom function processing the upload url,it is complete after use urlPrefix |function||
 
 **\* Other config you can see the tinymce API**
+
+## Event
+
+|Name|Description|Type|
+|----|----|----|
+|uploadDone|upload complete|function(editorRef)|
 
 ## DefineExpose
 

@@ -32,7 +32,6 @@ const customElementUpload = (e: any) => {
     editor.value.editorRef.setContent(`<img src="${res.location}"/>`)
   });
 }
-
 </script>
 
 <template>

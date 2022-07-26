@@ -11,7 +11,7 @@ import Editor from '@tinymce/tinymce-vue';
 import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default';
 import 'tinymce/models/dom';
-import { array, bool, number, string } from 'vue-types';
+import { array, bool, func, number, string } from 'vue-types';
 import { onMounted, onUnmounted, ref, useAttrs, unref } from 'vue';
 import { plugins, toolbar } from './tinymce';
 import 'tinymce/plugins/image'
@@ -50,8 +50,12 @@ const props = defineProps({
     lang: string().def(''),
     uploadUrl: string().def(''),
     headers: array<Header>().def([]),
-    showUploadBtn: bool().def(true)
+    showUploadBtn: bool().def(true),
+    urlPrefix: string().def(""),
+    jsonKey: string().def("data"),
+    urlFunc: func()
 });
+const emits = defineEmits(['uploadDone']);
 
 const attr = useAttrs();
 
@@ -62,6 +66,19 @@ const uploadFileBtn = ref();
 const getLangUrl = (lang: string) => {
     const langPath = '/tinymce/langs/';
     return langPath + lang + '.js'
+}
+
+const getUrlFunc = (str: string) => {
+    let url = "";
+
+    try {
+        url = props.urlFunc ? props.urlFunc(str) : str;
+    } catch (error) {
+        console.error(error);
+        url = str;
+    }
+
+    return url;
 }
 
 const image_upload_handler = (
@@ -100,14 +117,15 @@ const image_upload_handler = (
             }
 
             const json = JSON.parse(xhr.responseText);
-            json.location = json.data;
+            json.location = props.urlPrefix + json[props.jsonKey];
 
             if (!json || typeof json.location != "string") {
                 reject("Invalid JSON: " + xhr.responseText);
                 return;
             }
 
-            resolve(isBlob ? json.location : json);
+            resolve(isBlob ? getUrlFunc(json.location) : json);
+            emits('uploadDone', editorRef);
         };
 
         xhr.onerror = () => {
@@ -205,7 +223,8 @@ const setup = (editor: any) => {
 
         p.then((res: any) => {
             if (editor) {
-                editor.insertContent(`<img src="${res.location}" />`);
+                editor.insertContent(`<img src="${getUrlFunc(res.location)}" />`);
+                emits('uploadDone', editorRef);
             } else {
                 console.log("Tinymce editor not found!");
             }
@@ -252,6 +271,7 @@ function setValue(editor: Recordable, val: string, prevVal?: string) {
         val !== editor.getContent()
     ) {
         editor.setContent(val);
+        emits('uploadDone', editorRef);
     }
 }
 
@@ -275,7 +295,7 @@ function handleDone(name: string, url: string) {
         return;
     }
     const content = editor?.getContent() ?? '';
-    const val = content?.replace(getUploadingImgName(name), `<img src="${url}"/>`) ?? '';
+    const val = content?.replace(getUploadingImgName(name), `<img src="${getUrlFunc(url)}"/>`) ?? '';
     setValue(editor, val);
 }
 

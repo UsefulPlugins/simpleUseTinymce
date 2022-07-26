@@ -1,6 +1,6 @@
 {
   "name": "simpleusetinymce",
-  "version": "1.0.21",
+  "version": "1.1.0",
   "description": "simple use the newest tinymce by vue.",
   "private": false,
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^5.0.0",
-    "simpleusetinymce": "^1.0.16",
+    "simpleusetinymce": "^1.1.0",
     "tinymce": "^6.1.0",
     "vue": "^3.2.25",
     "vue-types": "^4.1.1"
