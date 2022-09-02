@@ -41,9 +41,9 @@ This template help you eary to use the newest tinymce (6).
 
 ![resource](https://github.com/numver/simpleUseTinymce/blob/main/assets/resource.png)
 
-```
-main.ts
 
+##### main.ts
+```javascript
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -52,14 +52,14 @@ import TEditor from "simpleusetinymce";
 createApp(App).use(TEditor).mount("#app");
 ```
 
-```
-App.vue
-
+##### App.vue
+```javascript
 <!-- basic -->
 <t-editor v-model="val" />
 ```
 
-```
+##### *.vue
+```javascript
 <!-- i18n -->
 let langArr = ["zh-Hans", "hy", "th_TH"];
 let lang = ref(langArr[0]);
@@ -77,7 +77,7 @@ const changeLang = () => {
 <t-editor v-model="val" :lang="lang" :key="lang" />
 ```
 
-```
+```javascript
 <!-- Custom upload function by yourself -->
 const editor = ref();
 
