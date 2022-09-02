@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^5.0.0",
-    "simpleusetinymce": "^1.1.0",
+    "simpleusetinymce": "^1.1.2",
     "tinymce": "^6.1.0",
     "vue": "^3.2.25",
     "vue-types": "^4.1.1"

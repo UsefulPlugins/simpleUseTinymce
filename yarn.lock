@@ -360,10 +360,10 @@ rollup@^2.59.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-simpleusetinymce@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/simpleusetinymce/-/simpleusetinymce-1.1.0.tgz#a4958199b367810c9388dc0a3c83237d6fd13f03"
-  integrity sha512-5pSQGoq9MQiQmEZyjiAYKeBcCdTuEiJGSfAnJX1hSLFIGl4JtLx+jBAFETuXMpgFzMSBs1wvdLHfoXfVhSsySQ==
+simpleusetinymce@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmmirror.com/simpleusetinymce/-/simpleusetinymce-1.1.2.tgz#bc5147ae3d3acbd7ee6ac78c6839660bafbf064c"
+  integrity sha512-llyAqVD5rkipqwLmEQl2dKVkJneUZtMd49WrbyC0bcuSpXQupSB8YTjs6TZ9GUJ9F+R/7wEhVtkhKelFkFoOnA==
   dependencies:
     "@tinymce/tinymce-vue" "^5.0.0"
     tinymce "^6.1.0"
