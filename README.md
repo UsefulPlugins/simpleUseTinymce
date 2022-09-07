@@ -1,5 +1,5 @@
 ## Notice
-[EN](https://github.com/numver/simpleUseTinymce#readme) &emsp; [CN](https://github.com/numver/simpleUseTinymce#readme_cn)
+[EN](https://github.com/numver/simpleUseTinymce#readme) &emsp; [CN](https://github.com/UsefulPlugins/simpleUseTinymce/blob/main/README_CN.md)
 
 This template help you eary to use the newest tinymce (6). 
 

@@ -1,5 +1,5 @@
 ## Notice
-[英文](https://github.com/numver/simpleUseTinymce#readme) &emsp; [中文](https://github.com/numver/simpleUseTinymce#readme_cn)
+[英文](https://github.com/numver/simpleUseTinymce#readme) &emsp; [中文](https://github.com/UsefulPlugins/simpleUseTinymce/blob/main/README_CN.md)
 
 此插件帮助你更容易使用最新版的tinymce(6)富文本编辑器
 
