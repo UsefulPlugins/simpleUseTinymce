@@ -108,7 +108,7 @@ const customElementUpload = (e: any) => {
 const otherInitConfig = {
   // tinymce config
 }
-<t-editor v-model="val" />
+<t-editor v-model="val" :otherInitConfig="otherInitConfig"/>
 
 // cover all the config and init tinymce
 const tinymceConfig = {
