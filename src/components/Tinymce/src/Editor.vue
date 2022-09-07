@@ -11,7 +11,7 @@ import Editor from '@tinymce/tinymce-vue';
 import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default';
 import 'tinymce/models/dom';
-import { array, bool, func, number, string } from 'vue-types';
+import { array, bool, func, number, object, string } from 'vue-types';
 import { onMounted, onUnmounted, ref, useAttrs, unref } from 'vue';
 import { plugins, toolbar } from './tinymce';
 import 'tinymce/plugins/image'
@@ -51,9 +51,11 @@ const props = defineProps({
     uploadUrl: string().def(''),
     headers: array<Header>().def([]),
     showUploadBtn: bool().def(true),
+    uploadBtnText: string().def('Upload'),
     urlPrefix: string().def(""),
     jsonKey: string().def("data"),
-    urlFunc: func()
+    urlFunc: func(),
+    otherInitConfig: object().def({})
 });
 const emits = defineEmits(['uploadDone']);
 
@@ -248,6 +250,7 @@ const initConfig: any = {
     importcss_append: true,
     file_picker_callback: file_picker_callback,
     setup: setup,
+    ...props.otherInitConfig
 }
 
 try {
@@ -334,7 +337,7 @@ defineExpose({
         <Editor api-key="no-api-key" :init="initConfig" :disabled="disabled" v-bind="attr" />
         <slot name="customUploadBtn">
             <div class="custom-upload" v-if="showUploadBtn" style="position: absolute; right: 4px;top: 4px;">
-                <input type="button" value="Upload" class="upload-btn" ref="uploadBtn" @click="uploadClick"
+                <input type="button" :value="uploadBtnText" class="upload-btn" ref="uploadBtn" @click="uploadClick"
                     style="width: 100px;height: 30px;" />
                 <input type="file" class="upload-file-btn" ref="uploadFileBtn" @change="fileChange"
                     style="display:none" />

@@ -1,4 +1,5 @@
 ## Notice
+[EN](https://github.com/numver/simpleUseTinymce#readme) &emsp; [CN](https://github.com/numver/simpleUseTinymce#readme_cn)
 
 This template help you eary to use the newest tinymce (6). 
 
@@ -16,10 +17,12 @@ This template help you eary to use the newest tinymce (6).
 |uploadUrl|upload image url|string|""|
 |headers|upload image url api headers|array<{key:string,val:any}>|[]|
 |showUploadBtn|show the custom input file btn|boolean|true|
+|uploadBtnText|custom upload btn value|string|'Upload'|
 |customUploadBtn|custom upload button|slot|
 |urlPrefix|if your image url is not a full url,You can complete the address through it |string|""|
-|jsonKey|Api response like {code:0,data:'xxxx'}, it use the data keyword |string|data|
+|jsonKey|Api response like {code:0,data:'xxxx'}, it use the data keyword |string|'data'|
 |urlFunc|Custom function processing the upload url,it is complete after use urlPrefix |function||
+|otherInitConfig|Custom tinymce config cover this config |object|{}|
 
 **\* Other config you can see the tinymce API**
 
@@ -97,4 +100,19 @@ const customElementUpload = (e: any) => {
       <input type="file" @change="customElementUpload">
     </template> 
 </t-editor>
+```
+
+```javascript
+<!-- custom tinymce config -->
+// cover the config that it was used
+const otherInitConfig = {
+  // tinymce config
+}
+<t-editor v-model="val" />
+
+// cover all the config and init tinymce
+const tinymceConfig = {
+  // tinymce config
+}
+<t-editor v-model="val" :init="tinymceConfig"/>
 ```
